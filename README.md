@@ -174,7 +174,7 @@ Model CNN dasar dibangun **tanpa pretrained weights**, menggunakan gambar **gray
 ## Cara Menjalankan Project
 1. Clone repository:  
 ```bash
-git clone <URL_REPO>
+git clone https://github.com/rendraar/fer-2013-Image-Emotion-Classification
 ```
 
 2. Install dependencies:
