@@ -14,6 +14,7 @@ from tensorflow.keras.applications.efficientnet import (
 # CONFIG
 # =========================
 IMG_SIZE = 128
+MODEL_PATH = "results_effnet/efficientnet_model.h5"
 
 CLASS_NAMES = [
     "Angry", "Disgust", "Fear",
@@ -42,10 +43,8 @@ def build_effnet():
 
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model(
-        "results_effnet/efficientnet_model.h5",
-        compile=False
-    )
+    model = build_effnet()
+    model.load_weights(MODEL_PATH)
     return model
 
 # =========================
@@ -97,6 +96,4 @@ def render():
             st.progress(
                 float(probs[i]),
                 text=f"{cls} ({probs[i]*100:.2f}%)"
-
             )
-
