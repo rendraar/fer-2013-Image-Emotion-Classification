@@ -14,7 +14,6 @@ from tensorflow.keras.applications.efficientnet import (
 # CONFIG
 # =========================
 IMG_SIZE = 128
-MODEL_PATH = "results_effnet/efficientnet_model.h5"
 
 CLASS_NAMES = [
     "Angry", "Disgust", "Fear",
@@ -43,8 +42,10 @@ def build_effnet():
 
 @st.cache_resource
 def load_model():
-    model = build_effnet()
-    model.load_weights(MODEL_PATH)
+    model = tf.keras.models.load_model(
+        "results_effnet/efficientnet_model.h5",
+        compile=False
+    )
     return model
 
 # =========================
@@ -98,3 +99,4 @@ def render():
                 text=f"{cls} ({probs[i]*100:.2f}%)"
 
             )
+
