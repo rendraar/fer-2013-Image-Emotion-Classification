@@ -13,7 +13,7 @@ from tensorflow.keras.applications.efficientnet import (
 # =========================
 # CONFIG
 # =========================
-IMG_SIZE = 128  # samakan dengan training
+IMG_SIZE = 128
 MODEL_PATH = "results_effnet/efficientnet_model.h5"
 
 CLASS_NAMES = [
@@ -96,4 +96,5 @@ def render():
             st.progress(
                 float(probs[i]),
                 text=f"{cls} ({probs[i]*100:.2f}%)"
+
             )
