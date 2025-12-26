@@ -187,7 +187,7 @@ pip install -r requirements.txt
 
 3. Jalankan Streamlit Dashboard:
 ```bash
-streamlit run base_cnn_app.py
+streamlit run streamlit_app.py
 ```
 
 Gunakan tombol pada homepage untuk mengakses masing-masing model (Base CNN, VGG16, EfficientNet).
