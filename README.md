@@ -12,6 +12,9 @@ Setiap model dievaluasi menggunakan:
 - **Confusion Matrix**  
 - **Grafik Loss dan Accuracy**  
 
+## Akses Online
+Anda dapat mengakses aplikasi klasifikasi emosi wajah secara online melalui URL berikut: [https://rendraar-image-emotion-classification.streamlit.app/](https://rendraar-image-emotion-classification.streamlit.app/)
+
 ---
 
 ## Dataset
