@@ -24,7 +24,7 @@ def preprocess_image(img):
 
 def render():
     st.title("Base CNN Model")
-    st.write("Model CNN dari awal (non-pretrained)")
+    st.write("Prediksi emosi menggunakan model CNN yang dibangun dari awal")
 
     model = load_model()
 

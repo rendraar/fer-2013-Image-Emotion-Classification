@@ -35,7 +35,7 @@ def build_effnet():
     x = GlobalAveragePooling2D()(x)
     x = Dense(256, activation="relu")(x)
     x = Dropout(0.5)(x)
-    out = Dense(CLASS_NAMES, activation="softmax")(x)
+    out = Dense(len(CLASS_NAMES), activation="softmax")(x)
 
     model = Model(inputs=base.input, outputs=out)
     return model
@@ -71,7 +71,8 @@ def predict_image(model, img):
 # STREAMLIT UI
 # =========================
 def render():
-    st.title("🖼️ Image Classification (EfficientNet)")
+    st.title("EfficientNetB0 (Transfer Learning)")
+    st.write("Prediksi emosi menggunakan model EfficientNetB0")
 
     uploaded_file = st.file_uploader(
         "Upload image",
@@ -82,15 +83,17 @@ def render():
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded Image", use_container_width=True)
 
-        if st.button("Predict"):
-            with st.spinner("Predicting..."):
-                model = load_model()
-                img_tensor = preprocess_image(image)
-                label, conf, probs = predict_image(model, img_tensor)
+        with st.spinner("Predicting..."):
+            model = load_model()
+            img_tensor = preprocess_image(image)
+            label, conf, probs = predict_image(model, img_tensor)
 
-            st.success(f"Prediction: **{label}**")
-            st.write(f"Confidence: **{conf:.5f}**")
+        st.success(f"Prediction: **{label}**")
+        st.write(f"Confidence: **{conf:.5f}**")
 
-            st.subheader("Class Probabilities")
-            for i, cls in enumerate(CLASS_NAMES):
-                st.write(f"{cls}: {probs[i]:.5f}")
+        st.subheader("Class Probabilities")
+        for i, cls in enumerate(CLASS_NAMES):
+            st.progress(
+                float(probs[i]),
+                text=f"{cls} ({probs[i]*100:.2f}%)"
+            )

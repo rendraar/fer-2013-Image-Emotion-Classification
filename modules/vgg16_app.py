@@ -8,7 +8,7 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 # CONFIG
 # =========================
 MODEL_PATH = "results_vgg/vgg_model.h5"
-IMG_SIZE = 128
+IMG_SIZE = 96
 
 CLASS_NAMES = [
     "Angry", "Disgust", "Fear",
@@ -37,12 +37,8 @@ def preprocess_image(img: Image.Image):
 # UI
 # =========================
 def render():
-    st.title("🧠 VGG16 (Transfer Learning)")
-    st.write("""
-    Model **VGG16 pretrained ImageNet**  
-    - Input: 128×128 RGB  
-    - Fine-tuning classifier head  
-    """)
+    st.title("VGG16 (Transfer Learning)")
+    st.write("Prediksi emosi menggunakan model VGG16")
 
     model = load_model()
 
